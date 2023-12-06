@@ -1,5 +1,5 @@
-# cdk-notifier-feature-stacks
+# cdk-notifier-examples
 
-## github actions
+https://github.com/karlderkaefer/cdk-notifier
 
-`./act `
+![architecture](./docs/cdk-diff-pipeline.drawio.svg)
