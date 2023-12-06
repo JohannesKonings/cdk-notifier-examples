@@ -1,0 +1,28 @@
+on:
+  push:
+    branches:
+      - main
+
+env:
+  AWS_DEFAULT_REGION: us-east-1
+
+jobs:
+  deploy:
+    name: deploy to AWS account
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT }}:role/github-actions-role
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+  
+      - name: check caller identity
+        run: |
+          aws sts get-caller-identity
