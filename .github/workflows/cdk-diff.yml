@@ -46,7 +46,7 @@ jobs:
         run: |
           npm ci  
           echo "check the diff to main"
-          BRANCH_NAME=main npx cdk diff --app cdk.out --progress=events &> >(tee cdk.log)
+          BRANCH_NAME=main npx cdk diff --progress=events &> >(tee cdk.log)
           echo "create cdk-notifier report"
           echo "BRANCH_NAME: $BRANCH_NAME"
           echo "GITHUB_OWNER: $GITHUB_OWNER"
