@@ -6,7 +6,7 @@ export class CdkNotfifierFeatureStackExample extends Stack {
     super(scope, id, props);
 
     new dynamodb.Table(this, 'Table', {
-      tableName: `Table-${branchName}`,
+      tableName: `Table-rename-${branchName}`,
       partitionKey: { name: 'id', type: dynamodb.AttributeType.STRING },
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
     });
