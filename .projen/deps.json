@@ -6,7 +6,7 @@
     },
     {
       "name": "@types/node",
-      "version": "^18",
+      "version": "^20",
       "type": "build"
     },
     {
@@ -21,7 +21,7 @@
     },
     {
       "name": "aws-cdk",
-      "version": "^2.114.1",
+      "version": "^2.138.0",
       "type": "build"
     },
     {
@@ -67,12 +67,8 @@
       "type": "build"
     },
     {
-      "name": "aws-cdk-github-oidc",
-      "type": "runtime"
-    },
-    {
       "name": "aws-cdk-lib",
-      "version": "^2.114.1",
+      "version": "^2.138.0",
       "type": "runtime"
     },
     {
