@@ -1,4 +1,4 @@
-import { App, Stack, StackProps, aws_dynamodb as dynamodb } from 'aws-cdk-lib';
+import { App, Stack, StackProps, Tags, aws_dynamodb as dynamodb } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 
 export class CdkNotfifierFeatureStackExample extends Stack {
@@ -19,5 +19,7 @@ const branchName = process.env.BRANCH_NAME || 'dev';
 console.log(`Deploying with stack postfix ${branchName}`);
 
 new CdkNotfifierFeatureStackExample(app, `cdk-notifier-feature-stacks-${branchName}`);
+
+Tags.of(app).add('branch', branchName);
 
 app.synth();
