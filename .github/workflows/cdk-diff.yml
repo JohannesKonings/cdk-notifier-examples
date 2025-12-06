@@ -36,6 +36,18 @@ jobs:
         run: |
           aws sts get-caller-identity
       
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 10
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24  
+          cache: 'pnpm'
+      
       - name: Install cdk-notifier
         run: |
           curl -L "https://github.com/karlderkaefer/cdk-notifier/releases/latest/download/cdk-notifier_$(uname)_amd64.gz" -o cdk-notifier.gz
@@ -44,9 +56,9 @@ jobs:
           cdk-notifier --version
       - name: Check diff to main
         run: |
-          npm ci  
+          pnpm install --frozen-lockfile  
           echo "check the diff to main"
-          BRANCH_NAME=main npx cdk diff --progress=events &> >(tee cdk.log)
+          BRANCH_NAME=main pnpm exec cdk diff --progress=events &> >(tee cdk.log)
           echo "create cdk-notifier report"
           echo "BRANCH_NAME: $BRANCH_NAME"
           echo "GITHUB_OWNER: $GITHUB_OWNER"
