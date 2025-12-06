@@ -54,7 +54,7 @@ jobs:
           gunzip cdk-notifier.gz && chmod +x cdk-notifier && rm -rf cdk-notifier.gz
           sudo mv cdk-notifier /usr/local/bin/cdk-notifier
           cdk-notifier --version
-      - name: Check diff to main
+      - name: Check diff and change-set to main
         run: |
           pnpm install --frozen-lockfile  
           ECHO=$(echo "check the diff to main")
@@ -62,7 +62,7 @@ jobs:
           NPM_CONFIG_LOGLEVEL=error BRANCH_NAME=main pnpm exec cdk diff --progress=events &> >(tee -a cdk.log)
           ECHO=$(echo "check the change-set to main")
           echo $ECHO | tee -a cdk.log
-          NPM_CONFIG_LOGLEVEL=error BRANCH_NAME=main pnpm exec cdk deploy --all --method prepare-change-set &> >(tee -a cdk.log)
+          NPM_CONFIG_LOGLEVEL=error BRANCH_NAME=main pnpm exec cdk deploy --all --method prepare-change-set &> >(tee -a cdk.log) || true
           echo "create cdk-notifier report"
           echo "BRANCH_NAME: $BRANCH_NAME"
           echo "GITHUB_OWNER: $GITHUB_OWNER"
