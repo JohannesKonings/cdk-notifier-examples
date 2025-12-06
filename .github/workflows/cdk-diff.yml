@@ -58,7 +58,7 @@ jobs:
         run: |
           pnpm install --frozen-lockfile  
           echo "check the diff to main"
-          BRANCH_NAME=main pnpm exec cdk diff --progress=events &> >(tee cdk.log)
+          NPM_CONFIG_LOGLEVEL=error BRANCH_NAME=main pnpm exec cdk diff --progress=events &> >(tee cdk.log)
           echo "create cdk-notifier report"
           echo "BRANCH_NAME: $BRANCH_NAME"
           echo "GITHUB_OWNER: $GITHUB_OWNER"
