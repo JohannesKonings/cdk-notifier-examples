@@ -57,10 +57,10 @@ jobs:
       - name: Check diff and change-set to main
         run: |
           pnpm install --frozen-lockfile  
-          ECHO=$(echo "check the diff to main")
+          ECHO=$(echo "## Check the diff to main")
           echo $ECHO | tee -a cdk.log
           NPM_CONFIG_LOGLEVEL=error BRANCH_NAME=main pnpm exec cdk diff --progress=events &> >(tee -a cdk.log)
-          ECHO=$(echo "check the change-set to main")
+          ECHO=$(echo "## Check the change-set to main")
           echo $ECHO | tee -a cdk.log
           NPM_CONFIG_LOGLEVEL=error BRANCH_NAME=main pnpm exec cdk deploy --all --method prepare-change-set &> >(tee -a cdk.log) || true
           echo "create cdk-notifier report"
